@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Аналіз серцевого ритму</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23065f46'/%3E%3Cpolyline points='4,18 8,18 11,8 15,24 19,14 23,18 28,18' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Локальні бібліотеки: відкривається напряму з index.html (file://), без інтернету -->
+    <script src="vendor/react.production.min.js"></script>
+    <script src="vendor/react-dom.production.min.js"></script>
+    <script src="vendor/brain.min.js"></script>
+    <script src="vendor/tailwindcss-browser.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <p style="font-family: system-ui, sans-serif; padding: 2rem; color: #475569">
+        Завантаження застосунку…
+      </p>
+    </div>
+
+    <!-- Ядро (чистий JS, без React) -->
+    <script src="js/core/dataGenerator.js"></script>
+    <script src="js/core/neuralNetwork.js"></script>
+    <script src="js/core/workerClient.js"></script>
+
+    <!-- React UI -->
+    <script src="js/components/h.js"></script>
+    <script src="js/components/Header.js"></script>
+    <script src="js/components/Card.js"></script>
+    <script src="js/components/Button.js"></script>
+    <script src="js/components/Tabs.js"></script>
+    <script src="js/components/ProgressBar.js"></script>
+    <script src="js/components/MessageBar.js"></script>
+    <script src="js/components/Toast.js"></script>
+    <script src="js/components/TrainingSection.js"></script>
+    <script src="js/components/StatsPanel.js"></script>
+    <script src="js/components/IntervalInputs.js"></script>
+    <script src="js/components/RhythmVisual.js"></script>
+    <script src="js/components/ResultCard.js"></script>
+    <script src="js/components/DebugDetails.js"></script>
+    <script src="js/components/InfoModal.js"></script>
+    <script src="js/App.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
