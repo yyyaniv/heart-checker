@@ -151,6 +151,7 @@
     var seriesTextPair = useState('');
     var seriesText = seriesTextPair[0];
     var setSeriesText = seriesTextPair[1];
+    var seriesRevisionRef = useRef(0);
 
     var seriesErrorPair = useState(null);
     var seriesError = seriesErrorPair[0];
@@ -555,6 +556,7 @@
           return;
         }
         setSeriesError(null);
+        var revision = seriesRevisionRef.current;
         var rr = parsed.bpms.map(bpmToRrSec);
         var windowCount = Math.max(1, rr.length - 3);
         setPredicting(true);
@@ -570,6 +572,7 @@
           elapsedMs: 0,
         });
         nn.predictSeriesAsync(rr, function (p) {
+          if (revision !== seriesRevisionRef.current) return;
           setPredictProgress({
             phase: 'predict',
             percent: p.percent,
@@ -580,6 +583,7 @@
           });
         })
           .then(function (result) {
+            if (revision !== seriesRevisionRef.current) return;
             result.seriesText = parsed.bpms.join(', ');
             setPrediction(result);
             setPredictTimeMs(result.predictTimeMs || 0);
@@ -646,7 +650,12 @@
 
     var handleSeriesChange = useCallback(function (value) {
       var cleaned = sanitizeBpmSeriesInput(value);
+      seriesRevisionRef.current += 1;
       setSeriesText(cleaned);
+      setPrediction(null);
+      setPredictTimeMs(null);
+      setPredictProgress(null);
+      setMessage(null);
       if (!cleaned.trim()) {
         setSeriesError(null);
         return;
@@ -675,6 +684,9 @@
     }
 
     var handleClear = useCallback(function () {
+      seriesRevisionRef.current += 1;
+      setPredictTimeMs(null);
+      setPredictProgress(null);
       setSeriesText('');
       setSeriesError(null);
       setPrediction(null);
@@ -684,6 +696,9 @@
     }, []);
 
     var handleResetNetwork = useCallback(function () {
+      seriesRevisionRef.current += 1;
+      setPredictTimeMs(null);
+      setPredictProgress(null);
       nn.resetNetwork();
       netReadyRef.current = false;
       var hasData = !!datasetRef.current;

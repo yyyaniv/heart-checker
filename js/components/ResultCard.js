@@ -71,8 +71,10 @@
       h(
         'div',
         { className: 'space-y-2' },
+        h('p', { className: 'text-sm font-semibold text-slate-700' }, 'Оцінки мережі'),
         ConfidenceBar('Норма', prediction.raw.normal, '#065f46'),
-        ConfidenceBar('Аритмія', prediction.raw.arrhythmia, '#ffc4a3')
+        ConfidenceBar('Аритмія', prediction.raw.arrhythmia, '#ffc4a3'),
+        h('p', { className: 'text-xs text-slate-500' }, 'Оцінки не є ймовірністю захворювання та не обов’язково сумуються до 100%.')
       )
     );
   }

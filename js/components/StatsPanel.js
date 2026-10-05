@@ -44,7 +44,9 @@
     return h(
       'div',
       { className: 'grid grid-cols-2 md:grid-cols-4 gap-2' },
-      StatItem('Навчальних прикладів', String(stats.trainingExamples)),
+      StatItem('Усього прикладів', String(stats.trainingExamples)),
+      StatItem('Для навчання', String(stats.trainSize)),
+      StatItem('Для перевірки', String(stats.testSize)),
       StatItem('Норма', String(stats.normalExamples), 'normal'),
       StatItem('Аритмія', String(stats.arrhythmiaExamples), 'arrhythmia'),
       StatItem('Епохи', String(stats.epochs || stats.iterations)),

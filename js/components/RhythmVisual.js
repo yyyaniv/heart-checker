@@ -241,6 +241,7 @@
     var body = h(
       'div',
       { className: 'space-y-2 w-full min-w-0' },
+      h('p', { className: 'text-xs text-slate-500' }, 'Схематична візуалізація · не запис ЕКГ'),
       h(
         'div',
         { className: 'flex flex-wrap items-center gap-2' },
